@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="./">
+  <title>H-Cap • Human Capability PWA</title>
+  <meta name="theme-color" content="#111111">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>H-Cap</h1>
+    <div class="row" style="gap:8px;align-items:center;justify-content:flex-end">
+      <button id="themeBtn" class="btn ghost" title="สลับธีม">ธีม</button>
+      <button id="installBtn" class="btn ghost" title="ติดตั้งเป็นแอป">ติดตั้ง</button>
+    </div>
+  </header>
+
+  <main id="app" class="app-shell" aria-live="polite"></main>
+
+  <nav class="tabbar" role="navigation" aria-label="หลัก">
+    <a href="#/home" data-tab="home" class="active" aria-label="หน้าแรก">หน้าแรก</a>
+    <a href="#/tests" data-tab="tests" aria-label="ทดสอบ">ทดสอบ</a>
+    <a href="#/stats" data-tab="stats" aria-label="สถิติ">สถิติ</a>
+    <a href="#/profile" data-tab="profile" aria-label="โปรไฟล์">โปรไฟล์</a>
+  </nav>
+
+  <noscript>ต้องเปิดใช้งาน JavaScript เพื่อใช้งานแอปนี้</noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
