@@ -1,4 +1,23 @@
 /* H-Cap PWA v2.4.3 */
+import { DB } from './db.js';
+const Store={
+  get(k,d=null){ try{return JSON.parse(localStorage.getItem(k)) ?? d}catch{ return d } },
+  set(k,v){ localStorage.setItem(k,JSON.stringify(v)) },
+  push(k,v){
+    const a=Store.get(k,[]); a.push(v); Store.set(k,a);
+    // สำเนาลง IndexedDB
+    try{ DB.put(k,v); }catch{}
+    // (ออปชัน) ยิงขึ้นคลาวด์ถ้ามี API
+    try{
+      if(navigator.onLine){
+        const payload={entries:[{bucket:k,ts:(v?.ts||Date.now()),payload:v}]};
+        navigator.sendBeacon?.('/api/logs', new Blob([JSON.stringify(payload)],{type:'application/json'})) ||
+        fetch('/api/logs',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
+      }
+    }catch{}
+  }
+};
+
 const $=(s,e=document)=>e.querySelector(s), $$=(s,e=document)=>[...e.querySelectorAll(s)];
 function toast(m,t='info'){
   let el=$('#toast');
