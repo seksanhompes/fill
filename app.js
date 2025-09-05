@@ -27,11 +27,7 @@ function toast(m,t='info'){
     ';color:#fff;padding:10px 14px;border-radius:12px;z-index:9999';
   el.textContent=m; setTimeout(()=>el.remove(),2200);
 }
-const Store={
-  get(k,d=null){ try{return JSON.parse(localStorage.getItem(k)) ?? d}catch{ return d } },
-  set(k,v){ localStorage.setItem(k,JSON.stringify(v)) },
-  push(k,v){ const a=Store.get(k,[]); a.push(v); Store.set(k,a) }
-};
+
 
 const CATALOG=[
   {id:'reaction',name:'Reaction Time',desc:'แตะเร็วเมื่อเปลี่ยนสี',file:'tests/reaction.js',run:'runReaction',levels:['basic','skilled','expert'],cat:'Cognitive'},
